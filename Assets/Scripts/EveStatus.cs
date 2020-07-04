@@ -33,6 +33,10 @@ public class EveStatus : MonoBehaviour {
 		}
 	}
     void OnDestroy() {
+		if (!GameCtrl) {
+			return;
+		}
+
         GameCtrl.SendMessage("TankMinus");
     }
 }

@@ -14,6 +14,10 @@ public class BulletAmount : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!HeroTank) {
+            return;
+        }
+
         BulletNumber = HeroTank.GetComponent<Tank_Hero>().BulletNumber;
         BulletNumberMax = HeroTank.GetComponent<Tank_Hero>().BulletNumberMax;
         BulletNo.text = "子弹数量： " + BulletNumber + " / " + BulletNumberMax;

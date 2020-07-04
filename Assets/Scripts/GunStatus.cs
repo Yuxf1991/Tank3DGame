@@ -30,6 +30,10 @@ public class GunStatus : MonoBehaviour {
     }
 
     void Update () {
+        if (!GameObject.Find("HeroTank")) {
+            return;
+        }
+
         if (ToAttack)
         {
             AiGun.SendMessage("SetTarget", GameObject.Find("HeroTank"));

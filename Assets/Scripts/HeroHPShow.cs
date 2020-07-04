@@ -15,6 +15,10 @@ public class HeroHPShow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!HeroTank) {
+            return;
+        }
+
         HPNow = HeroTank.GetComponent<HeroStatus>().m_HP;
         HPMax = HeroTank.GetComponent<HeroStatus>().MaxHP;
         int Tankstatus = (int)((float)HPNow / (float)HPMax * 100);

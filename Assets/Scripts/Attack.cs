@@ -26,6 +26,10 @@ public class Attack : MonoBehaviour {
     }
 
     void Rotation() {
+        if (!AttackObject) {
+            return;
+        }
+
         Vector3 v1 = AttackObject.transform.position - transform.position;
         v1 = v1.normalized;
         Vector3 v2 = transform.forward;
@@ -51,10 +55,10 @@ public class Attack : MonoBehaviour {
         }
         LastFire = Time.time;
         GameObject go = (GameObject)Instantiate(EveBullet);
-		transform.FindChild("tower").transform.Translate(new Vector3(0, -Back, 0));
+		transform.Find("tower").transform.Translate(new Vector3(0, -Back, 0));
         MoveHead += Back;
-        go.transform.position = transform.FindChild("tower").transform.FindChild("Shoot").transform.position;
-        go.transform.rotation = transform.FindChild("tower").transform.FindChild("Shoot").transform.rotation;
+        go.transform.position = transform.Find("tower").transform.Find("Shoot").transform.position;
+        go.transform.rotation = transform.Find("tower").transform.Find("Shoot").transform.rotation;
 
 		Vector3 BP = new Vector3(ATN, Damage, Sunder);//用一个数组把子弹威力装起来
 		go.SendMessage ("BulletPower", BP);
@@ -66,8 +70,8 @@ public class Attack : MonoBehaviour {
 
 		//枪口火光
 		GameObject flame = (GameObject)Instantiate(FireFlame);
-		flame.transform.position = transform.FindChild("tower").transform.FindChild("Shoot").transform.position;
-		flame.transform.rotation = transform.FindChild("tower").transform.FindChild("Shoot").transform.rotation;
+		flame.transform.position = transform.Find("tower").transform.Find("Shoot").transform.position;
+		flame.transform.rotation = transform.Find("tower").transform.Find("Shoot").transform.rotation;
 		Destroy(flame, FlameLiveTime);
     }
 
@@ -77,7 +81,7 @@ public class Attack : MonoBehaviour {
 
         if (MoveHead > 0)
         {
-            transform.FindChild("tower").transform.Translate(new Vector3(0, 0.1f, 0));
+            transform.Find("tower").transform.Translate(new Vector3(0, 0.1f, 0));
             MoveHead -= 0.1f;
         }
 			

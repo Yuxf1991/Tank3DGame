@@ -97,7 +97,7 @@ public class Tank_Hero : MonoBehaviour {
 
 		//旋转视角i 
 		//Vector3 head_direction = Input.GetAxis("Mouse X") * transform.up;
-		transform.FindChild("tower").transform.Rotate(0, 0, Input.GetAxis("Mouse X"), Space.Self);
+		transform.Find("tower").transform.Rotate(0, 0, Input.GetAxis("Mouse X"), Space.Self);
 
 		//如果翻车，则重置
 
@@ -112,8 +112,8 @@ public class Tank_Hero : MonoBehaviour {
 				flag = false;
 				//发射子弹        
 				GameObject go = (GameObject)Instantiate(HeroBullet);   
-				go.transform.position = transform.FindChild("tower").transform.FindChild("Shoot").transform.position;
-				go.transform.rotation = transform.FindChild("tower").transform.FindChild("Shoot").transform.rotation;
+				go.transform.position = transform.Find("tower").transform.Find("Shoot").transform.position;
+				go.transform.rotation = transform.Find("tower").transform.Find("Shoot").transform.rotation;
 				go.transform.Rotate(0, 90, 0);
 
 				go.SendMessage("SetSpeed", BulletSpeedLevel);
@@ -133,13 +133,13 @@ public class Tank_Hero : MonoBehaviour {
 				GunSound.Play();
 
 				//后座力
-				transform.FindChild("tower").transform.Translate(new Vector3(0, -Back, 0));
+				transform.Find("tower").transform.Translate(new Vector3(0, -Back, 0));
 				MoveHead += Back;
 
 				//枪口火光
 				GameObject flame = (GameObject)Instantiate(FireFlame);
-				flame.transform.position = transform.FindChild("tower").transform.FindChild("Shoot").transform.position;
-				flame.transform.rotation = transform.FindChild("tower").transform.FindChild("Shoot").transform.rotation;
+				flame.transform.position = transform.Find("tower").transform.Find("Shoot").transform.position;
+				flame.transform.rotation = transform.Find("tower").transform.Find("Shoot").transform.rotation;
 				Destroy(flame, FlameLiveTime);
 			}
            
@@ -147,7 +147,7 @@ public class Tank_Hero : MonoBehaviour {
 
 		if (MoveHead > 0)
 		{
-			transform.FindChild("tower").transform.Translate(new Vector3(0, 0.1f, 0));
+			transform.Find("tower").transform.Translate(new Vector3(0, 0.1f, 0));
 			MoveHead -= 0.1f;
 		}
 

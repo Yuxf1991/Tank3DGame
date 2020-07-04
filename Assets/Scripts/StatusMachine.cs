@@ -36,6 +36,10 @@ public class StatusMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameObject.Find("HeroTank")) {
+            return;
+        }
+
         if (ToAttack) {
             AiTank.SendMessage("Stop");
             AiTank.SendMessage("SetTarget", GameObject.Find("HeroTank"));
